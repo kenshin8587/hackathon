@@ -7,7 +7,12 @@ function memo() {
     // 入力されたメッセージを取得
     const message = $('#message').val();
     // メモの内容を表示
-    $('#thread').prepend(`<p>` + userName + 'さん(メモ): ' + message + `</p>`);
+    //空白以外は投稿
+    if($.trim(message)) {
+        $('#thread').prepend(`<p>` + userName + 'さん(メモ): ' + message + `</p>`)
+    //投稿フィールドをリセット
+        $('#message').val('');
+    }
 
     return false;
 }
