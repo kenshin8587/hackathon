@@ -1,5 +1,5 @@
 'use strict';
-require('date-utils');
+// require('date-utils');
 
 // メモを画面上に表示する
 function memo() {    
@@ -9,10 +9,10 @@ function memo() {
     const message = $('#message').val();
     // メモの内容を表示
     var dt = new Date();
-    var formatted = dt.toFormat("YYYY-MM-DD HH24:MI:SS");
+    var formatted = dt.toLocaleString({ timeZone: 'Asia/Tokyo' });
     // 空白以外は投稿
     if($.trim(message)) {
-        $('#thread').prepend(`<p>` + userName + 'さん(メモ): ' + message + formatted +`</p>`)
+        $('#thread').prepend(`<p>` + userName + 'さん(メモ): ' + message + ' <' + formatted + '>' + `</p>`)
     // 投稿フィールドをリセット
         $('#message').val('');
 
