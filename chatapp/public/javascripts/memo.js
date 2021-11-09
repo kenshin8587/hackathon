@@ -1,18 +1,19 @@
 'use strict';
 
 // メモを画面上に表示する
-function memo() {
+function memo() {    
     // ユーザ名を取得
     const userName = $('#userName').val();
     // 入力されたメッセージを取得
     const message = $('#message').val();
     // メモの内容を表示
-    //空白以外は投稿
+    // 空白以外は投稿
     if($.trim(message)) {
         $('#thread').prepend(`<p>` + userName + 'さん(メモ): ' + message + `</p>`)
-    //投稿フィールドをリセット
+    // 投稿フィールドをリセット
         $('#message').val('');
-    }
 
+    }
+    console.log(message + 'というメモを受信');
     return false;
 }
