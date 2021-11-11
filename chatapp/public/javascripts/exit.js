@@ -3,7 +3,7 @@
 // 退室メッセージをサーバに送信する
 function exit() {
     // ユーザ名取得
-    const userName = $('#userName').text();
+    const userName = $('#userName').val();
     // 退室メッセージイベントを送信する
     socket.emit('sendExitEvent', userName);
     // 退室
