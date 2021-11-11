@@ -18,11 +18,20 @@ function publish() {
 }
 
 // サーバから受信した投稿メッセージを画面上に表示する
+//他人用
 socket.on('receiveMessageEvent', function (data, userName) {
     // 「ユーザー名さん: コメント」を画面上に表示する
     var dt = new Date();
     var formatted = dt.toLocaleString({ timeZone: 'Asia/Tokyo' });
     $('#thread').prepend('<p>' + userName + 'さん:' + data + ' <' + formatted + '>' + '</p>');
+});
+
+//自分用
+socket.on('selfReceiveMessageEvent', function (data, userName) {
+    // 「ユーザー名さん: コメント」を画面上に表示する
+    var dt = new Date();
+    var formatted = dt.toLocaleString({ timeZone: 'Asia/Tokyo' });
+    $('#thread').prepend('<p>' + userName + '(自分)：' + data + ' <' + formatted + '>' + '</p>');
 });
 
 // メッセージでエンターキーが押されたら投稿する
