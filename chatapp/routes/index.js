@@ -12,6 +12,7 @@ router.get('/', function(request, response, next) {
 router.post('/room', function(request, response, next) {
     console.log('ユーザ名：' + request.body.userName);
     response.render('room', { userName: '' });
+    
 });
 
 module.exports = router;
