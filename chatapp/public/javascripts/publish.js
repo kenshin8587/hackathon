@@ -18,7 +18,9 @@ function publish() {
 // サーバから受信した投稿メッセージを画面上に表示する
 socket.on('receiveMessageEvent', function (data, userName) {
     // 「ユーザー名さん: コメント」を画面上に表示する
-    $('#thread').prepend('<p>' + userName + 'さん:' + data + '</p>');
+    var dt = new Date();
+    var formatted = dt.toLocaleString({ timeZone: 'Asia/Tokyo' });
+    $('#thread').prepend('<p>' + userName + 'さん:' + data + ' <' + formatted + '>' + '</p>');
     // 投稿フィールドをリセット
     $('#message').val('');
 });
