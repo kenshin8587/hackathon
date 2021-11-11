@@ -17,7 +17,7 @@ function memo() {
         $('#thread').prepend(`<p>` + userName + 'さん(メモ): ' + message + ' <' + formatted + '>' + `</p>`)
     // 投稿フィールドをリセット
         $('#message').val('');
-
+        console.log(userName + 'さんが' + message + 'を入力しました');
     }
     return false;
 }
