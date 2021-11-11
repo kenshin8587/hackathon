@@ -1,13 +1,22 @@
 'use strict';
+// require('date-utils');
 
 // メモを画面上に表示する
-function memo() {
+function memo() {    
     // ユーザ名を取得
-    const userName = '';
+    const userName = $('#userName').val();
     // 入力されたメッセージを取得
-    const message = '';
+    const message = $('#message').val();
     // メモの内容を表示
-    $('#thread').prepend('<p>' + '</p>');
+    var dt = new Date();
+    var formatted = dt.toLocaleString({ timeZone: 'Asia/Tokyo' });
+    // 空白以外は投稿
+    if($.trim(message)) {
+        $('#thread').prepend(`<p>` + userName + 'さん(メモ): ' + message + ' <' + formatted + '>' + `</p>`)
+    // 投稿フィールドをリセット
+        $('#message').val('');
 
+    }
+    console.log(message + 'というメモを受信');
     return false;
 }
