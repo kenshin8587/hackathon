@@ -10,6 +10,8 @@ function publish() {
     // 空行や改行だけではないもの
     if($.trim(message)){
         socket.emit('sendMessageEvent', message, userName);
+        // 投稿フィールドをリセット
+        $('#message').val('');
     }
     console.log(userName);
     return false;
@@ -21,8 +23,6 @@ socket.on('receiveMessageEvent', function (data, userName) {
     var dt = new Date();
     var formatted = dt.toLocaleString({ timeZone: 'Asia/Tokyo' });
     $('#thread').prepend('<p>' + userName + 'さん:' + data + ' <' + formatted + '>' + '</p>');
-    // 投稿フィールドをリセット
-    $('#message').val('');
 });
 
 // メッセージでエンターキーが押されたら投稿する
