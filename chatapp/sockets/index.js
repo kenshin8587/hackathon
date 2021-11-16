@@ -14,5 +14,6 @@ module.exports = function (server) {
 
         // 退室モジュールの呼出
         require('./exit')(socket);
+
     });
 };

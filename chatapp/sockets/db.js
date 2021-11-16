@@ -19,8 +19,8 @@
     db.close();
 });*/
 
-
-    userName = $('#userName').val();
+//このファイルは使用していません
+    /*userName = $('#userName').val();
     console.log('db.js' + userName);
     //nameをだぶり禁止にする
     const sqlite3 = require("sqlite3");
@@ -34,4 +34,4 @@
         console.log(`${row.id}`, `${row.name}`, `${row.password}`);
     });
 
-    db.close();
+    db.close();*/

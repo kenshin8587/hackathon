@@ -12,18 +12,4 @@ socket.emit('sendEnterEvent',userName);
 socket.on('receiveEnterEvent', function (data) {
     console.log('db.js' + data);
     $('#thread').prepend('<p>' + data +'さんが入ってきたよ'+ '</p>');
-    console.log('db.js' + data);
-
-    const sqlite3 = require("sqlite3");
-    const db = new sqlite3.Database("./Users.db");
-    db.run("drop table if exists Users");  
-    console.log('db.js' + data);
-    db.run("create table if not exists Users(id integer primary key autoincrement,name, password)");
-    db.run("insert into Users(name,password) values(?,?)", "hoge", "pass2");
-    db.run("insert into Users(name,password) values(?,?)", data, "passhoge");
-    db.each("select * from Users", (err, row) => {
-        console.log(`${row.id}`, `${row.name}`, `${row.password}`);
-    });
-
-    db.close();
 });
