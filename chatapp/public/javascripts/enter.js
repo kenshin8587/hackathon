@@ -13,3 +13,8 @@ socket.on('receiveEnterEvent', function (data) {
     console.log('db.js' + data);
     $('#thread').prepend('<p class="enter_comment"> ~~~' + data +'さんが入ってきたよ ~~~ </p>');
 });
+
+socket.on('receiveLoginUsers', function (data) {
+    console.log('db.js' + data.name);
+    $('#loginUsers').prepend('<p>' + 'ユーザー一覧' + data.name + '</p>');
+});

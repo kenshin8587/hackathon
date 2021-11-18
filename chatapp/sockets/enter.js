@@ -1,9 +1,8 @@
 'use strict';
 
-module.exports = function (socket) {
+module.exports = function (socket, io) {
     // 入室メッセージをクライアントに送信する
     socket.on('sendEnterEvent', function (data) {
-        socket.broadcast.emit('receiveEnterEvent', data);
         
         //sqlite3を使えるようにしている
         const sqlite3 = require("sqlite3");
@@ -21,18 +20,28 @@ module.exports = function (socket) {
 
        
 
-        //データベースに保存されているデータの出力
+        //データベースに保存されているか確認
         db.get(`select name from Users where name ='${data}'`, (err, row) => {
-            console.log(row);
-            console.log(err);
+            /*console.log(row);
+            console.log(err);*/
             if(row){
+                //すでにデータベースに保存されていたら他のユーザーに通知
                 socket.broadcast.emit('receiveEnterEvent', data);
+                //stausを1に変更
                 db.run(`update Users set(status)=1 where name='${data}'`);
             }
             else{
                  //入力されたユーザーネームをデータベースに保存。
                 db.run("insert into Users(name,status) values(?,?)", data,1);
             }
+
+        });
+
+        //
+        db.each(`select name from Users where status=1`, (err, row) => {
+            console.log(row);
+            console.log(err);
+            io.sockets.emit('receiveLoginUsers', row);
 
         });
 
