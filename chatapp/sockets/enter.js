@@ -19,12 +19,21 @@ module.exports = function (socket) {
         //テーブルの作成
         db.run("create table if not exists Users(id integer primary key autoincrement,name text, status integer)");
 
-        //入力されたユーザーネームをデータベースに保存。パスワードは仮。
-        db.run("insert into Users(name,status) values(?,?)", data,1);
+       
 
         //データベースに保存されているデータの出力
-        db.each("select * from Users", (err, row) => {
-            console.log(`${row.id}`, `${row.name}`);
+        db.get(`select name from Users where name ='${data}'`, (err, row) => {
+            console.log(row);
+            console.log(err);
+            if(row){
+                socket.broadcast.emit('receiveEnterEvent', data);
+                db.run(`update Users set(status)=1 where name='${data}'`);
+            }
+            else{
+                 //入力されたユーザーネームをデータベースに保存。
+                db.run("insert into Users(name,status) values(?,?)", data,1);
+            }
+
         });
 
         db.close();
