@@ -17,7 +17,7 @@ module.exports = function (socket) {
         console.log('db.js' + data);
 
         //テーブルの作成
-        db.run("create table if not exists Users(id integer primary key autoincrement,name, password)");
+        db.run("create table if not exists Users(id integer primary key autoincrement,name text, status integer)");
 
         //入力されたユーザーネームをデータベースに保存。パスワードは仮。
         db.run("insert into Users(name,password) values(?,?)", data, "passhoge");
