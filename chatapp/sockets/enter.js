@@ -27,9 +27,10 @@ module.exports = function (socket) {
             console.log(err);
             if(row){
                 socket.broadcast.emit('receiveEnterEvent', data);
+                db.run(`update Users set(status)=1 where name='${data}'`);
             }
             else{
-                 //入力されたユーザーネームをデータベースに保存。パスワードは仮。
+                 //入力されたユーザーネームをデータベースに保存。
                 db.run("insert into Users(name,status) values(?,?)", data,1);
             }
 
