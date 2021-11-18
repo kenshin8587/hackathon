@@ -20,11 +20,11 @@ module.exports = function (socket) {
         db.run("create table if not exists Users(id integer primary key autoincrement,name text, status integer)");
 
         //入力されたユーザーネームをデータベースに保存。パスワードは仮。
-        db.run("insert into Users(name,password) values(?,?)", data, "passhoge");
+        db.run("insert into Users(name,status) values(?,?)", data,1);
 
         //データベースに保存されているデータの出力
         db.each("select * from Users", (err, row) => {
-            console.log(`${row.id}`, `${row.name}`, `${row.password}`);
+            console.log(`${row.id}`, `${row.name}`);
         });
 
         db.close();
