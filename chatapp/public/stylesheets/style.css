@@ -143,3 +143,14 @@ div {
     opacity: 0.5;
     text-align:center
 }
+
+/* チャット画面の背景 */
+.room-thread {
+    background: #b8f0ba;
+    border-radius: 40px 40px 40px 40px;
+}
+
+/* 全てのボタン */
+.btn {
+    border-radius: 40px 40px 40px 40px;
+}
