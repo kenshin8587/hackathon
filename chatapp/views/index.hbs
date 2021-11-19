@@ -5,12 +5,14 @@
     <div class="row">
         <form method="post" action="/room">
             <div class="index-user_name">
-                お名前
-                <input type="text" id="userName" name="userName" class="index-user_name_text">
+                <div class="form-group">
+                    お名前
+                    <input type="text" id="userName" name="userName" class="form-control">
+                </div>
             </div>
             <div class="index-enter">
                 <!-- ボタンは大きく ドアのアイコン設置-->
-                <input type="button" value="入室する" class="common-button index-enter_button" onclick="enter();">
+                <input type="button" value="入室する" class="btn btn-success" onclick="enter();">
             </div>
         </form>
     </div>

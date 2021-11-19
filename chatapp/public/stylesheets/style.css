@@ -138,3 +138,34 @@ div {
     opacity: 0.5;
     text-align:center
 }
+
+/* DM受信側 */
+.outgoing_dm{ 
+    overflow:hidden; 
+    margin:26px 0 26px;
+}
+
+.sent_msg {
+    float: right;
+    width: 46%;
+}
+
+.sent_dm p {
+    background: #8f056d none repeat scroll 0 0;
+    border-radius: 3px;
+    font-size: 14px;
+    margin: 0; color:#fff;
+    padding: 5px 10px 5px 12px;
+    width:100%;
+}
+
+/* チャット画面の背景 */
+.room-thread {
+    background: #b8f0ba;
+    border-radius: 40px 40px 40px 40px;
+}
+
+/* 全てのボタン */
+.btn {
+    border-radius: 40px 40px 40px 40px;
+}
