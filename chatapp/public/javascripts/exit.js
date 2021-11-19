@@ -4,13 +4,17 @@
 function exit() {
     // ユーザ名取得
     const userName = $('#userName').val();
+
+    var ret = confirm("退室します。よろしいですか?");
     // 退室メッセージイベントを送信する
-    socket.emit('sendExitEvent', userName);
-    // 退室
-    location.href = '/';
+    if (ret == true){
+        socket.emit('sendExitEvent', userName);
+        // 退室
+        location.href = '/';
+    }
 }
 
 // サーバから受信した退室メッセージを画面上に表示する
 socket.on('reseiveExitEvent', function (data) {
-    $('#thread').prepend('<p>' + data + 'さんが退室しました。' + '</p>');
+    $('#thread').prepend('<p class="exit_comment"> ---' + data +'さんが退出したよ --- </p>');
 });
