@@ -12,6 +12,4 @@ function enter() {
     else{
         $('form').submit();
     }
-
-    
 }
