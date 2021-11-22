@@ -12,7 +12,7 @@ function enter() {
     }
     else{
         // ログインチェックを送信する
-        socket.emit('sendCheck',userName);
+        socket.emit('sendCheck', userName);
         //チャットルームに入る
         socket.on('receiveCheck0', function (data) {
             $('form').submit();

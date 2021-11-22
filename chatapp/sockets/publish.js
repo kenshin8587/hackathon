@@ -10,12 +10,12 @@ module.exports = function (socket, io) {
     });
 
     // 投稿メッセージを送信する
-    socket.on('sendMessageEvent', function (data, userName, formatted) {
+    socket.on('sendMessageEvent', function (message, userName, dateString) {
         //自分宛
-        socket.emit('selfReceiveMessageEvent', data, userName, formatted);
+        socket.emit('selfReceiveMessageEvent', message, userName, dateString);
         //他人宛
-        socket.broadcast.emit('receiveMessageEvent', data, userName, formatted);
-        console.log(userName + 'さんから' + data + 'というコメントを受け取りました' + formatted);
+        socket.broadcast.emit('receiveMessageEvent', message, userName, dateString);
+        console.log(userName + 'さんから' + message + 'というコメントを受け取りました' + dateString);
 
         //sqlite3を使えるようにしている
         const sqlite3 = require("sqlite3");
@@ -31,11 +31,11 @@ module.exports = function (socket, io) {
         db.run("create table if not exists Publish(id integer primary key autoincrement, name, message, time)");
 
         //入力されたユーザーネーム、メッセージ、時間をデータベースに保存。
-        db.run("insert into Publish(name, message, time) values(?,?, ?)", userName, data, formatted);
+        db.run("insert into Publish(name, message, time) values(?,?, ?)", userName, message, dateString);
 
         //データベースに保存されているデータの出力
         db.each("select * from Publish", (err, row) => {
-            //console.log(`${row.id}`, `${row.name}`, `${row.message}`, `${row.time}`);
+            console.log(`${row.name}`, `${row.message}`, `${row.time}`);
         });
 
         db.close();

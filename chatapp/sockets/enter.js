@@ -2,7 +2,7 @@
 
 module.exports = function (socket, io) {
     // 入室メッセージをクライアントに送信する
-    socket.on('sendEnterEvent', function (data) {
+    socket.on('sendEnterEvent', function (enterUserName) {
         
         //sqlite3を使えるようにしている
         const sqlite3 = require("sqlite3");
@@ -13,25 +13,25 @@ module.exports = function (socket, io) {
 
         //db.run("drop table if exists Users");　//データを保存するためコメントアウト。テーブルを消したければコメントアウト外す。
         
-        console.log('db.js: ' + data);
+        console.log('db.js: ' + enterUserName);
 
         //テーブルの作成
         db.run("create table if not exists Users(id integer primary key autoincrement,name text, status integer)");
 
     
         //データベースに保存されているか確認
-        db.get(`select name from Users where name ='${data}'`, (err, row) => {
+        db.get(`select name from Users where name ='${enterUserName}'`, (err, row) => {
             /*console.log(row);
             console.log(err);*/
             if(row){
                 //すでにデータベースに保存されていたら他のユーザーに通知
-                socket.broadcast.emit('receiveEnterEvent', data);
+                socket.broadcast.emit('receiveEnterEvent', enterUserName);
                 //stausを1に変更
-                db.run(`update Users set(status)=1 where name='${data}'`);
+                db.run(`update Users set(status)=1 where name='${enterUserName}'`);
             }
             else{
                  //入力されたユーザーネームをデータベースに保存。
-                db.run("insert into Users(name,status) values(?,?)", data,1);
+                db.run("insert into Users(name,status) values(?,?)", enterUserName,1);
             }
 
         });

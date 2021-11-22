@@ -8,16 +8,16 @@ const userName = $('#userName').val();
 socket.emit('sendEnterEvent', userName);
 
 // サーバから受信した入室メッセージを画面上に表示する
-socket.on('receiveEnterEvent', function (data) {
-    console.log('db.js' + data);
-    $('#thread').prepend('<p class="enter_comment"> ~~~' + data +'さんが入ってきたよ ~~~ </p>');
+socket.on('receiveEnterEvent', function (enterUserName) {
+    console.log('db.js' + enterUserName);
+    $('#thread').prepend('<p class="enter_comment"> ~~~' + enterUserName +'さんが入ってきたよ ~~~ </p>');
 });
 
-socket.on('receiveLoginUsers', function (data) {
+socket.on('receiveLoginUsers', function (loginUsers) {
     // 一旦消してから一覧を再び書く
     $('#loginUsers').empty();
-    for(let login of data){
-        $('#loginUsers').prepend('<button type=button id="'+login.name+'" onclick="selectUserName(this.id);">' + login.name + '</button><br>');
+    for(let login of loginUsers){
+        $('#loginUsers').prepend('<button type=button id="' + login.name + '" onclick="selectUserName(this.id);">' + login.name + '</button><br>');
     }
     $('#loginUsers').prepend('<h3> ログインユーザ 一覧 <h3>');
 });
