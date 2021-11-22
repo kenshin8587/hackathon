@@ -13,13 +13,12 @@ module.exports = function (socket, io) {
 
         //db.run("drop table if exists Users");　//データを保存するためコメントアウト。テーブルを消したければコメントアウト外す。
         
-        console.log('db.js' + data);
+        console.log('db.js: ' + data);
 
         //テーブルの作成
         db.run("create table if not exists Users(id integer primary key autoincrement,name text, status integer)");
 
-       
-
+    
         //データベースに保存されているか確認
         db.get(`select name from Users where name ='${data}'`, (err, row) => {
             /*console.log(row);
@@ -37,12 +36,11 @@ module.exports = function (socket, io) {
 
         });
 
-        //
-        db.each(`select name from Users where status=1`, (err, row) => {
+        // 
+        db.all(`select name from Users where status=1`, (err, row) => {
             console.log(row);
             console.log(err);
             io.sockets.emit('receiveLoginUsers', row);
-
         });
 
         db.close();

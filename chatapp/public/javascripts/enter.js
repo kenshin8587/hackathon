@@ -5,8 +5,7 @@
 const userName = $('#userName').val();
 //console.log('enter.js'+userName);
 // 入室メッセージイベントを送信する
-socket.emit('sendEnterEvent',userName);
-
+socket.emit('sendEnterEvent', userName);
 
 // サーバから受信した入室メッセージを画面上に表示する
 socket.on('receiveEnterEvent', function (data) {
@@ -15,6 +14,10 @@ socket.on('receiveEnterEvent', function (data) {
 });
 
 socket.on('receiveLoginUsers', function (data) {
-    console.log('db.js' + data.name);
-    $('#loginUsers').prepend('<p>' + 'ユーザー一覧' + data.name + '</p>');
+    // 一旦消してから一覧を再び書く
+    $('#loginUsers').empty();
+    for(let login of data){
+        $('#loginUsers').prepend('<button type=button id="'+login.name+'" onclick="selectUserName(this.id);">' + login.name + '</button><br>');
+    }
+    $('#loginUsers').prepend('<h3> ログインユーザ 一覧 <h3>');
 });

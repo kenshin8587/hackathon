@@ -90,6 +90,7 @@ div {
 }
 
 /*送る方*/
+/* 投稿 */
 .outgoing_msg{ 
     overflow:hidden; 
     margin:26px 0 26px;
@@ -107,7 +108,25 @@ div {
     width:100%;
 }
 .sent_msg_trash {
+
+}
+
+/* dm */
+.outgoing_dm{ 
+    overflow:hidden; 
+    margin:26px 0 26px;
+}
+.sent_dm {
     float: right;
+    width: 46%;
+}
+.sent_dm p {
+    background: #05728f none repeat scroll 0 0;
+    border-radius: 3px;
+    font-size: 14px;
+    margin: 0; color:#fff;
+    padding: 5px 10px 5px 12px;
+    width:100%;
 }
 
 /*受け取る方*/
@@ -134,6 +153,7 @@ div {
     width: 100%;
 }
 
+/* 入室 */
 .enter_comment {
     opacity: 0.5;
     text-align:center

@@ -3,6 +3,12 @@
 const { use } = require("../routes");
 
 module.exports = function (socket, io) {
+
+    // 投稿メッセージを消す
+    socket.on('sendTrashMessage', function (id) {
+        io.sockets.emit('receiveTrashMessage', id);
+    });
+
     // 投稿メッセージを送信する
     socket.on('sendMessageEvent', function (data, userName, formatted) {
         //自分宛
@@ -29,7 +35,7 @@ module.exports = function (socket, io) {
 
         //データベースに保存されているデータの出力
         db.each("select * from Publish", (err, row) => {
-            console.log(`${row.id}`, `${row.name}`, `${row.message}`, `${row.time}`);
+            //console.log(`${row.id}`, `${row.name}`, `${row.message}`, `${row.time}`);
         });
 
         db.close();

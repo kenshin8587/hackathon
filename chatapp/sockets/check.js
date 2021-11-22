@@ -19,15 +19,18 @@ module.exports = function (socket, io) {
                 //console.log(row.status);
                 //statusが0(退室時)は入室可能
                 if(row.status == '0'){
+                    console.log('入室可能');
                     socket.emit('receiveCheck0', row);
                 }
                 //statusが1(入室時)は入室不可
                 else{
+                    console.log('入室不可能');
                     socket.emit('receiveCheck1', row);
                 }
             }
             //DBに存在しない場合は入室可能
             else{
+                console.log('存在しない');
                 socket.emit('receiveCheck0', row);
             }
 
