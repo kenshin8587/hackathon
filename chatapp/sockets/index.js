@@ -17,9 +17,10 @@ module.exports = function (server) {
         // 退室モジュールの呼出
         require('./exit')(socket);
 
-        // DMモジュールの呼び出し
+        // DMモジュールの呼出
         require('./dm')(socket, io);
 
+        // checkモジュールの呼出
         require('./check')(socket, io);
     });
 };

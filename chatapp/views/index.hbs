@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <h1>Dチームのチャットルーム/h1>
+        <h1>Dチームのチャットルーム</h1>
     </div>
     <div class="row">
         <form method="post" action="/room">
@@ -10,7 +10,10 @@
             </div>
             <div class="index-enter">
                 <!-- ボタンは大きく ドアのアイコン設置-->
-                <input type="button" value="入室する" class="btn btn-success" onclick="enter();">
+                <button type="button" class="btn btn-success" onclick="enter();">
+                    <img src="/img/login.png" height="23" width="23">入室する
+                </button>
+                <!-- <input type="button" value="入室する" class="btn btn-success" onclick="enter();"> -->
             </div>
         </form>
     </div>
