@@ -15,6 +15,6 @@ function exit() {
 }
 
 // サーバから受信した退室メッセージを画面上に表示する
-socket.on('reseiveExitEvent', function (data) {
-    $('#thread').prepend('<p class="exit_comment"> ---' + data +'さんが退出したよ --- </p>');
+socket.on('reseiveExitEvent', function (exitUserName) {
+    $('#thread').prepend('<p class="exit_comment"> ---' + exitUserName +'さんが退出したよ --- </p>');
 });

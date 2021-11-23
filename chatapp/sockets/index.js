@@ -19,8 +19,5 @@ module.exports = function (server) {
 
         // DMモジュールの呼出
         require('./dm')(socket, io);
-
-        // checkモジュールの呼出
-        require('./check')(socket, io);
     });
 };
