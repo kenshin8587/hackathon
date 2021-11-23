@@ -1,7 +1,5 @@
 'use strict';
 
-const check = require('./check');
-
 module.exports = function (server) {
 
     const socketIo = require('socket.io')(server, { wsEngine: 'ws' });
@@ -19,5 +17,6 @@ module.exports = function (server) {
 
         // DMモジュールの呼出
         require('./dm')(socket, io);
+
     });
 };
