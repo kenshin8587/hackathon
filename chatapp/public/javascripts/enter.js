@@ -14,6 +14,14 @@ function enter() {
         socket.emit('sendEnterEvent', userName);
     }
 }
+// メッセージでエンターキーが押されたら投稿する
+$("#userName").keypress(function(e) {
+    // エンターキーのみが押されたら投稿する
+    if (e.keyCode == 13) {
+        enter();
+        return false;
+    }
+});
 
 // サーバから受信した入室メッセージを画面上に表示する
 socket.on('receiveEnterEvent', function (enterUserName) {
