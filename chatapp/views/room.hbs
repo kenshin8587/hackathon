@@ -8,9 +8,26 @@
         </div>
     </nav>
     <form method="post" action="/">
-        <div class="mt-5">
+        <div class="mt-5 mb-5">
             <div class="row">
-                <div class="col-sm-3">
+                <div class="col-md-7">
+                    <div class="room-thread">
+                        <div id="thread"></div>
+                    </div>
+                    <br>
+                    <br>
+                </div>
+                <div class="col-md-5">
+                    <div class="room-users align-left">
+                        <div id="loginUsers"></div>
+                        <input id="selectedUserName" type="hidden" value="">
+                    </div>
+                    <br>
+                    <br>
+                </div>
+            </div>
+            <footer class="mt-5">
+                <nav class="navbar fixed-bottom navbar-light bg-light">
                     <div class="room-login_user">
                         <input id="userName" type="hidden" value={{userName}}>
                     </div>
@@ -34,19 +51,7 @@
                         <input type="button" value="メモ" class="btn btn-secondary" onclick="memo();">
                         <input type="button" value="DM" class="btn btn-info" onclick="directmsg();">
                         -->
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="room-thread">
-                        <div id="thread"></div>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="room-users align-left">
-                        <div id="loginUsers"></div>
-                        <input id="selectedUserName" type="hidden" value="">
-                    </div>
-                    <div class="room-exit">
+                        <div class="room-exit">
                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                         <button type="button" class="btn btn-danger" onclick="exit();">
                             <img src="/img/logout.png" height="23" width="23">退室する
@@ -55,8 +60,9 @@
                         <input type="button" value="退室する" class="btn btn-danger" onclick="exit();">
                         -->
                     </div>
-                </div>
-            </div>
+                    </div>
+                </nav>
+            </footer>
         </div>
     </form>
 </div>
