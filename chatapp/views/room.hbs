@@ -1,12 +1,17 @@
 <div class="container">
-    <div class="row">
-        <h1>Dチームのチャットルーム</h1>
-    </div>
-        <form method="post" action="/">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #006633;">
+        <div class="container-fluid">
+            <h1 class="navbar-brand">楽楽会議</h1>
+            <div class="navbar-nav">
+                <p class="text-white">自分のユーザー名 "{{userName}}"</p>
+            </div>
+        </div>
+    </nav>
+    <form method="post" action="/">
+        <div class="mt-5">
             <div class="row">
                 <div class="col-sm-3">
                     <div class="room-login_user">
-                        ログインユーザ：{{userName}}さん
                         <input id="userName" type="hidden" value={{userName}}>
                     </div>
                     <div class="room-message">
@@ -52,7 +57,8 @@
                     </div>
                 </div>
             </div>
-        </form>
+        </div>
+    </form>
 </div>
 
 <script src="/javascripts/socket.js"></script>
